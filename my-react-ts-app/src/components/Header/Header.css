@@ -1,0 +1,141 @@
+/* Header Styles */
+.header {
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+/* Logo Styles */
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+/* Navigation Styles */
+.nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-item {
+    margin: 0;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #374151;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: color 0.2s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #111827;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #8b5cf6;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* CTA Button Styles */
+.cta {
+    display: flex;
+    align-items: center;
+}
+
+.contact-button {
+    background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+    color: #ffffff;
+    padding: 0.625rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+}
+
+.contact-button:hover {
+    background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+    transform: translateY(-1px);
+}
+
+.contact-button:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-container {
+        padding: 1rem 1.5rem;
+        gap: 1rem;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .logo h1 {
+        font-size: 1.25rem;
+    }
+
+    .contact-button {
+        padding: 0.5rem 1.25rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-container {
+        padding: 0.875rem 1rem;
+    }
+
+    .logo h1 {
+        font-size: 1.125rem;
+    }
+
+    .contact-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+}
