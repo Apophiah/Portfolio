@@ -14,7 +14,7 @@ const CreateMe: React.FC = () => {
         </p>
         <button className="contact-submit-btn">Contact Me</button>
       </div>
-    </section>
+    </section>     
   );
 };
 
