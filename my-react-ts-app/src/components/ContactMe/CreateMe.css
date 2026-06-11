@@ -1,0 +1,89 @@
+.contact-me-section {
+    background-color: #132238;
+    /* Navy dark blue background matching the screenshot */
+    padding: 6rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.contact-me-container {
+    max-width: 700px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.contact-title {
+    color: #ffffff;
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.2;
+}
+
+.contact-subtitle {
+    color: #cbd5e1;
+    /* Slightly lighter/grayish white text */
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.3;
+}
+
+.contact-description {
+    color: #94a3b8;
+    /* Muted gray text color */
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 0 2rem 0;
+}
+
+.contact-submit-btn {
+    background-color: #a855f7;
+    /* Purple background */
+    color: #ffffff;
+    border: none;
+    padding: 0.85rem 2.2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(168, 85, 247, 0.3);
+    transition: all 0.3s ease;
+}
+
+.contact-submit-btn:hover {
+    background-color: #9333ea;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(168, 85, 247, 0.5);
+}
+
+.contact-submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+    .contact-me-section {
+        padding: 4rem 1rem;
+    }
+
+    .contact-title {
+        font-size: 1.75rem;
+    }
+
+    .contact-subtitle {
+        font-size: 1.15rem;
+    }
+
+    .contact-description {
+        font-size: 0.9rem;
+    }
+}
