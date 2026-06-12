@@ -12,6 +12,7 @@ const Portfolio: React.FC = () => {
       alt: 'FitTrack UI Mockup',
       description: 'FitTrack serves as a useful tool to support healthier routines.',
       link: '#',
+      placeholder: null,
     },
     {
       id: 2,
@@ -19,6 +20,7 @@ const Portfolio: React.FC = () => {
       alt: 'Bulk SMS Marketing UI',
       description: 'Bulk SMS is a service used to send the same text message to many people at once.',
       link: '#',
+      placeholder: null,
     },
     {
       id: 3,
@@ -26,6 +28,19 @@ const Portfolio: React.FC = () => {
       alt: 'Innovation Hub UI Illustration',
       description: 'An Innovation Hub is a center that encourages creativity and innovation by bringing people together to develop new ideas and solutions.',
       link: '#',
+      placeholder: null,
+    },
+    {
+      id: 4,
+      image: null,
+      alt: 'Future Regret Simulator',
+      description: 'A Future Regret Simulator that helps you explore possible futures before making major decisions — four paths, one choice, infinite clarity.',
+      link: 'https://apophiathink-beyond.vercel.app',
+      placeholder: {
+        emoji: '🧠',
+        title: 'Future Regret Simulator',
+        subtitle: 'Think Beyond',
+      },
     },
   ];
 
@@ -41,7 +56,15 @@ const Portfolio: React.FC = () => {
           {projects.map((project) => (
             <div key={project.id} className="portfolio-card">
               <div className="portfolio-image-wrapper">
-                <img src={project.image} alt={project.alt} className="portfolio-card-image" />
+                {project.image ? (
+                  <img src={project.image} alt={project.alt} className="portfolio-card-image" />
+                ) : (
+                  <div className="portfolio-card-placeholder">
+                    <span className="placeholder-emoji">{project.placeholder?.emoji}</span>
+                    <span className="placeholder-title">{project.placeholder?.title}</span>
+                    <span className="placeholder-subtitle">{project.placeholder?.subtitle}</span>
+                  </div>
+                )}
               </div>
               <div className="portfolio-card-body">
                 <p className="portfolio-card-description">{project.description}</p>
