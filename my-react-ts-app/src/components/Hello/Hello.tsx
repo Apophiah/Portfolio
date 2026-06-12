@@ -1,6 +1,6 @@
 import React from 'react';
 import './Hello.css';
-
+import apo  from '../../assets/apo.jpg';
 const Hello: React.FC = () => {
     return (
         <section className="hello-section">
@@ -39,7 +39,7 @@ const Hello: React.FC = () => {
                 <div className="hello-image">
                     <div className="image-frame">
                         <img
-                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop"
+                            src={apo}
                             alt="Ronah"
                         />
                     </div>
