@@ -66,7 +66,11 @@
   color: #cbd5e1;
   font-size: 0.9rem;
   font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
 }
+
+.contact-info-item:hover { color: #a855f7; }
 
 .contact-info-item a {
   color: #cbd5e1;
@@ -77,6 +81,54 @@
 .contact-info-item a:hover { color: #a855f7; }
 
 .contact-info-icon { font-size: 1.1rem; }
+
+/* Social links */
+.contact-socials {
+  margin-top: 2rem;
+}
+
+.contact-socials-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #64748b;
+  margin: 0 0 0.75rem 0;
+}
+
+.contact-socials-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.contact-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 99px;
+  border: 1.5px solid var(--social-color);
+  color: var(--social-color);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: all 0.25s ease;
+  background: transparent;
+}
+
+.contact-social-btn:hover {
+  background: var(--social-color);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+
+.form-optional {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #64748b;
+}
 
 /* Right side: form */
 .contact-right {
