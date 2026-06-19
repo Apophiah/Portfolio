@@ -1,49 +1,86 @@
+import { useEffect, useRef, useState } from 'react';
 import './proffessional.css';
 
-const Proffessional = () => {
-    return (
-        <div className="professional-container">
-            <div className="professional-card">
-                <div className="profile-section">
-                    {/* Using a placeholder image that resembles the design - normally you would import a local asset */}
-                    <img
-                        src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Professional Photographer"
-                        className="profile-image"
-                    />
-                    <div className="social-icons">
-                        {/* WhatsApp Icon */}
-                        <div className="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
-                            </svg>
-                        </div>
-                        {/* LinkedIn Icon */}
-                        <div className="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.358 1.248zM6.132 14.854V6.169h2.327v1.071c.323-.497.902-1.248 2.275-1.248 2.378 0 2.816 1.564 2.816 3.593v5.27h-2.402V9.896c0-1.174-.022-2.685-1.637-2.685-1.636 0-1.886 1.278-1.886 2.597v4.965H6.132z" />
-                            </svg>
-                        </div>
-                        {/* X (Twitter) Icon */}
-                        <div className="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
+const skills = [
+  { label: 'React / React Native', percent: 90 },
+  { label: 'Node.js / Express', percent: 85 },
+  { label: 'TypeScript', percent: 80 },
+  { label: 'UI/UX Design (Figma)', percent: 75 },
+  { label: 'DevOps / Docker', percent: 70 },
+];
 
-                <div className="content-section">
-                    <h2 className="content-title">
-                        I am a Professional <span className="highlight">Web</span> and <span className="highlight">Mobile</span> developer.
-                    </h2>
-                    <p className="content-description">
-                        I am a passionate fullstack developer based in Kigali, Rwanda, with a strong background in both web and mobile development. I specialize in creating dynamic and responsive applications using the latest technologies.
-                    </p>
-                </div>
-            </div>
-        </div>
+const Proffessional = () => {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.3 }
     );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="professional-container" ref={ref} id="about">
+      <div className="professional-card">
+        <div className="profile-section">
+          <img
+            src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="Professional workspace"
+            className="profile-image"
+          />
+          <div className="social-icons">
+            <a href="https://wa.me/250791532685" target="_blank" rel="noopener noreferrer" className="icon icon-whatsapp" aria-label="WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="icon icon-linkedin" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.358 1.248zM6.132 14.854V6.169h2.327v1.071c.323-.497.902-1.248 2.275-1.248 2.378 0 2.816 1.564 2.816 3.593v5.27h-2.402V9.896c0-1.174-.022-2.685-1.637-2.685-1.636 0-1.886 1.278-1.886 2.597v4.965H6.132z" />
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="icon icon-x" aria-label="X (Twitter)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div className="content-section">
+          <h2 className="content-title">
+            I am a Professional <span className="highlight">Web</span> and <span className="highlight">Mobile</span> developer.
+          </h2>
+          <p className="content-description">
+            I am a passionate fullstack developer based in Kigali, Rwanda, with a strong background
+            in both web and mobile development. I specialize in creating dynamic and responsive
+            applications using the latest technologies.
+          </p>
+
+          <div className="skills-section">
+            <h3 className="skills-heading">Tech Skills</h3>
+            {skills.map((skill) => (
+              <div key={skill.label} className="skill-row">
+                <div className="skill-meta">
+                  <span className="skill-label">{skill.label}</span>
+                  <span className="skill-percent">{skill.percent}%</span>
+                </div>
+                <div className="skill-track">
+                  <div
+                    className="skill-fill"
+                    style={{ width: visible ? `${skill.percent}%` : '0%' }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Proffessional;
