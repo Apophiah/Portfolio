@@ -49,7 +49,7 @@ const FitTrack: React.FC = () => {
           <div className="ft-user">
             <div className="ft-avatar">A</div>
             <div className="ft-user-info">
-              <span className="ft-user-name">Alex M.</span>
+              <span className="ft-user-name">KATUSHABE</span>
               <span className="ft-user-level">Pro Member</span>
             </div>
           </div>
