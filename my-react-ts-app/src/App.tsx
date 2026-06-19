@@ -6,7 +6,6 @@ import WhatDoIdo from './components/WhatDoIdo/WhatDoIdo'
 import Portfolio from './components/Portfolio/Portfolio'
 import CreateMe from './components/ContactMe/CreateMe'
 import Services from './components/Services/Services'
-import FitTrack from './projects/fittrack/FitTrack'
 
 function PortfolioHome() {
   return (
@@ -25,8 +24,7 @@ function PortfolioHome() {
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<PortfolioHome />} />
-      <Route path="/fittrack/*" element={<FitTrack />} />
+      <Route path="/*" element={<PortfolioHome />} />
     </Routes>
   )
 }

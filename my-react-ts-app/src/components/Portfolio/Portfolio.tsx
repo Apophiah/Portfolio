@@ -13,7 +13,7 @@ const Portfolio: React.FC = () => {
       image: fittrackImg,
       alt: 'FitTrack UI Mockup',
       description: 'FitTrack serves as a useful tool to support healthier routines.',
-      link: '/fittrack',
+      link: 'https://fit-track-gamma-nine.vercel.app',
       placeholder: null,
     },
     {
