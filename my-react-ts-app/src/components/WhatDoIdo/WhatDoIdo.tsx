@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './WhatDoIdo.css';
+import { ArrowRightIcon, CodeIcon, MobileIcon, PenToolIcon, ShieldIcon } from '../Icons/Icons';
 
 const services = [
   {
     id: 1,
-    icon: '🎨',
+    Icon: PenToolIcon,
     title: 'UI/UX Design',
-    description:
-      'I craft intuitive and visually appealing interfaces that enhance user experience.',
+    description: 'I craft intuitive and visually appealing interfaces that enhance user experience.',
     skills: ['Figma', 'Adobe PS', 'Adobe Illustrator'],
     color: '#f59e0b',
   },
   {
     id: 2,
-    icon: '🌐',
+    Icon: CodeIcon,
     title: 'Web Development',
     description:
       'I build robust and scalable web applications using modern technologies — from front-end interfaces to back-end logic.',
@@ -22,7 +22,7 @@ const services = [
   },
   {
     id: 3,
-    icon: '📱',
+    Icon: MobileIcon,
     title: 'Mobile Development',
     description:
       'I develop cross-platform mobile apps that feel native on both Android and iOS. Fast, responsive, and user-friendly.',
@@ -31,7 +31,7 @@ const services = [
   },
   {
     id: 4,
-    icon: '⚙️',
+    Icon: ShieldIcon,
     title: 'DevOps & DevSecOps',
     description:
       'I set up CI/CD pipelines, containerize apps with Docker, and apply security best practices throughout the dev lifecycle.',
@@ -40,55 +40,46 @@ const services = [
   },
 ];
 
-const WhatDoIdo: React.FC = () => {
-  const [activeId, setActiveId] = useState<number | null>(null);
-
-  return (
-    <section className="what-do-i-do-section" id="services">
-      <div className="what-do-i-do-container">
-
-        <div className="info-column">
-          <p className="info-eyebrow">What I offer</p>
-          <h2 className="section-title">What do I do?</h2>
-          <p className="intro-text">
-            I specialize in crafting digital experiences that are both functional and
-            aesthetically pleasing. Strong foundation in UI/UX and full-stack engineering
-            lets me build high-performance, scalable products end-to-end.
-          </p>
-          <p className="cta-subtext">Let's build something great together!</p>
-          <a href="#contact" className="contact-btn">Contact Me!</a>
-        </div>
-
-        <div className="cards-column">
-          {services.map((svc) => (
-            <div
-              key={svc.id}
-              className={`service-card ${activeId === svc.id ? 'active' : ''}`}
-              onClick={() => setActiveId(activeId === svc.id ? null : svc.id)}
-              style={{ '--accent': svc.color } as React.CSSProperties}
-            >
-              <div className="card-header">
-                <span className="card-icon">{svc.icon}</span>
-                <h3 className="card-title">{svc.title}</h3>
-                <span className="card-toggle">{activeId === svc.id ? '−' : '+'}</span>
-              </div>
-
-              <div className="card-body">
-                <p className="card-description">{svc.description}</p>
-                <hr className="card-divider" />
-                <div className="skills-tags">
-                  {svc.skills.map((s) => (
-                    <span key={s} className="skill-tag">{s}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
+const WhatDoIdo: React.FC = () => (
+  <section className="section section-alt what-do-i-do-section" id="services">
+    <div className="container what-do-i-do-container">
+      <div className="info-column" data-reveal="left">
+        <p className="eyebrow">What I offer</p>
+        <h2 className="section-title">What do I do?</h2>
+        <p className="intro-text">
+          I specialize in crafting digital experiences that are both functional and aesthetically
+          pleasing. Strong foundation in UI/UX and full-stack engineering lets me build
+          high-performance, scalable products end-to-end.
+        </p>
+        <p className="cta-subtext">Let's build something great together!</p>
+        <a href="#contact" className="btn btn-primary">
+          Contact Me! <ArrowRightIcon />
+        </a>
       </div>
-    </section>
-  );
-};
+
+      <div className="cards-column">
+        {services.map(({ id, Icon, title, description, skills, color }, i) => (
+          // The wrapper handles the reveal so the card's own hover transition has no delay.
+          <div key={id} data-reveal style={{ '--delay': `${i * 0.1}s` } as React.CSSProperties}>
+          <article className="service-card" style={{ '--accent-c': color } as React.CSSProperties}>
+            <div className="card-icon">
+              <Icon className="icon-draw" />
+            </div>
+            <h3 className="card-title">{title}</h3>
+            <p className="card-description">{description}</p>
+            <div className="skills-tags">
+              {skills.map((s) => (
+                <span key={s} className="skill-tag">
+                  {s}
+                </span>
+              ))}
+            </div>
+          </article>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
 export default WhatDoIdo;

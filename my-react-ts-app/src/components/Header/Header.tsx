@@ -1,61 +1,93 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Header.css';
+import { MoonIcon, SunIcon } from '../Icons/Icons';
 
-interface HeaderProps {
-    className?: string;
-}
+type Theme = 'light' | 'dark';
 
-const Header: React.FC<HeaderProps> = ({ className = '' }) => {
-    const [isOpen, setIsOpen] = useState(false);
+const links = [
+  { href: '#about', label: 'About' },
+  { href: '#services', label: 'Services' },
+  { href: '#portfolio', label: 'Projects' },
+  { href: '#contact', label: 'Contact' },
+];
 
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
+const Header: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState<Theme>(() =>
+    document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light',
+  );
 
-    const closeMenu = () => {
-        setIsOpen(false);
-    };
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-    return (
-        <header className={`header ${className}`}>
-            <div className="header-container">
-                <div className="logo">
-                    <h1>Ronah.</h1>
-                </div>
+  const toggleTheme = () => {
+    const next: Theme = theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      /* storage unavailable (private mode) — theme still switches for this visit */
+    }
+    setTheme(next);
+  };
 
-                <nav className={`nav ${isOpen ? 'active' : ''}`}>
-                    <ul className="nav-list">
-                        <li className="nav-item">
-                            <a href="#about" className="nav-link" onClick={closeMenu}>About</a>
-                        </li>
-                        <li className="nav-item">
-                            <a href="#services" className="nav-link" onClick={closeMenu}>services</a>
-                        </li>
-                        <li className="nav-item">
-                            <a href="#portfolio" className="nav-link" onClick={closeMenu}>portfolio</a>
-                        </li>
-                        <li className="nav-item">
-                            <a href="#contact" className="nav-link" onClick={closeMenu}>contact Me</a>
-                        </li>
-                    </ul>
-                </nav>
+  const closeMenu = () => setIsOpen(false);
 
-                <div className="cta">
-                    <a href="#contact" className="contact-button" onClick={closeMenu}>Contact</a>
-                </div>
+  return (
+    <header className={`header ${scrolled ? 'is-scrolled' : ''} ${isOpen ? 'menu-open' : ''}`}>
+      <div className="header-container container">
+        <a href="#top" className="logo" onClick={closeMenu} aria-label="Ronah — back to top">
+          Ronah<span className="logo-dot">.</span>
+        </a>
 
-                <button 
-                    className={`menu-toggle ${isOpen ? 'open' : ''}`} 
-                    onClick={toggleMenu} 
-                    aria-label="Toggle navigation menu"
-                >
-                    <span className="hamburger-bar"></span>
-                    <span className="hamburger-bar"></span>
-                    <span className="hamburger-bar"></span>
-                </button>
-            </div>
-        </header>
-    );
+        <nav className={`nav ${isOpen ? 'active' : ''}`} aria-label="Main">
+          <ul className="nav-list">
+            {links.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} className="nav-link" onClick={closeMenu}>
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="header-actions">
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            <span className={`theme-icon ${theme === 'dark' ? 'show' : ''}`}><SunIcon /></span>
+            <span className={`theme-icon ${theme === 'light' ? 'show' : ''}`}><MoonIcon /></span>
+          </button>
+
+          <a href="#contact" className="btn btn-primary header-cta" onClick={closeMenu}>
+            Hire me
+          </a>
+
+          <button
+            type="button"
+            className={`menu-toggle ${isOpen ? 'open' : ''}`}
+            onClick={() => setIsOpen((o) => !o)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isOpen}
+          >
+            <span className="hamburger-bar" />
+            <span className="hamburger-bar" />
+            <span className="hamburger-bar" />
+          </button>
+        </div>
+      </div>
+    </header>
+  );
 };
 
 export default Header;
