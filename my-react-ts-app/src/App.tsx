@@ -6,17 +6,25 @@ import WhatDoIdo from './components/WhatDoIdo/WhatDoIdo'
 import Portfolio from './components/Portfolio/Portfolio'
 import CreateMe from './components/ContactMe/CreateMe'
 import Services from './components/Services/Services'
+import Footer from './components/Footer/Footer'
+import { useReveal } from './hooks/useReveal'
+import './App.css'
 
 function PortfolioHome() {
+  useReveal()
+
   return (
     <>
       <Header />
-      <Hello />
-      <Proffessional />
-      <WhatDoIdo />
-      <CreateMe />
-      <Portfolio />
-      <Services />
+      <main>
+        <Hello />
+        <Proffessional />
+        <WhatDoIdo />
+        <Portfolio />
+        <Services />
+        <CreateMe />
+      </main>
+      <Footer />
     </>
   )
 }
